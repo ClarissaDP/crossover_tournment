@@ -5,7 +5,32 @@ import sys
 * DO NOT MODIFY CODE OUTSIDE THIS FUNCTION!
 """
 def balancedOrNot(expressions, maxReplacements):
-    return [1, 0]
+
+    size = len(expressions)
+    can_converte = []
+    
+    for i in range(0, size):
+        expressions[i] = expressions[i].rstrip()
+        
+        if (expressions[i][-1] == '<'):
+            can_converte.append(0)
+
+        else:
+            j = 0
+            not_balanced = expressions[i].count('>') - expressions[i].count('<')
+
+            while ( not_balanced and j < maxReplacements[i] ):
+                expressions[i] = expressions[i].replace('>', '<>', 1)
+                not_balanced = expressions[i].count('>') - expressions[i].count('<')
+                j += 1
+
+            if ( not_balanced == 0 ):
+                can_converte.append(1)
+            else:
+                can_converte.append(0)
+
+    return can_converte
+
 
 """
 * DO NOT MODIFY CODE BELOW THIS POINT!
