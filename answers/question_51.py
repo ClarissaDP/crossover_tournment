@@ -5,14 +5,32 @@ import sys
 * DO NOT MODIFY CODE OUTSIDE THIS FUNCTION!
 """
 def rearrange(elements):
-    size = elements[0] + 1
-    binaries = [size]
+    size = len(elements)
+    
+    binaries = []
 
-    for i in range(1, size):
-        binary = bin(elements[i]).
-        binaries.append (bin(elements[i]))
+    for element in elements:
+        binary = bin(element).split('b')[1]
+        bin_ones = binary.count("1")
+        binaries.append(bin_ones)
 
-    print binaries
+    ordered = []
+    quant = list(set(binaries))
+    for i in range(0, len(quant)):
+        same_bin = [j for j, x in enumerate(binaries) if x == quant[i]]
+        
+        if ( len(same_bin) == 1 ):
+            ordered.append(binaries[same_bin[0]])
+        else:
+            for j in same_bin:
+                add = j
+                for k in same_bin:
+                    if ( (elements[add] in ordered or elements[k] < elements[add]) and (elements[k] not in ordered) ):
+                        add = k
+                ordered.append(elements[add])
+
+    return ordered
+
 
 """
 * DO NOT MODIFY CODE BELOW THIS POINT!
