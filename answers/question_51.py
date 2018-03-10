@@ -5,10 +5,9 @@ import sys
 * DO NOT MODIFY CODE OUTSIDE THIS FUNCTION!
 """
 def rearrange(elements):
-    size = len(elements)
-    
-    binaries = []
 
+    size = len(elements)
+    binaries = []
     for element in elements:
         binary = bin(element).split('b')[1]
         bin_ones = binary.count("1")
